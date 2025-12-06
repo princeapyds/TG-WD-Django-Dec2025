@@ -1,0 +1,34 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<h2 class="page-title">Dashboard</h2>
+
+<div class="dash-container">
+
+    <div class="dash-card">
+        <h3>{{ total_students }}</h3>
+        <p>Total Students</p>
+    </div>
+
+    <div class="dash-card">
+        <h3>{{ total_courses }}</h3>
+        <p>Total Courses</p>
+    </div>
+
+    <div class="dash-card">
+        <h3>{{ total_teachers }}</h3>
+        <p>Total Teachers</p>
+    </div>
+
+    <div class="dash-card">
+        <h3>{{ total_subjects }}</h3>
+        <p>Total Subjects</p>
+    </div>
+
+</div>
+
+{% endblock %}

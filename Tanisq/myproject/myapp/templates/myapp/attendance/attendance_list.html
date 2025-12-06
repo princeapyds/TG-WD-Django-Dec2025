@@ -1,0 +1,24 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+
+<h2>Attendance List</h2>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Date</th>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Status</th>
+    </tr>
+
+    {% for a in data %}
+    <tr>
+        <td>{{ a.date }}</td>
+        <td>{{ a.student.name }}</td>
+        <td>{{ a.course.course_name }}</td>
+        <td>{{ a.get_status_display }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

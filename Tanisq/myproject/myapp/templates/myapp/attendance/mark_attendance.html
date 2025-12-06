@@ -1,0 +1,55 @@
+{% extends 'myapp/base.html' %}
+{% load dict_filter %}
+{% block content %}
+
+<h2>Mark Attendance (Today)</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Student</th>
+            <th>Present</th>
+            <th>Absent</th>
+        </tr>
+
+        {% for s in students %}
+        <tr>
+            <td>{{ s.name }}</td>
+
+            <td>
+                <input type="radio" name="{{ s.id }}" value="P"
+                {% if todays_attendance|get_item:s.id == "P" %}checked{% endif %}>
+            </td>
+
+            <td>
+                <input type="radio" name="{{ s.id }}" value="A"
+                {% if todays_attendance|get_item:s.id == "A" %}checked{% endif %}>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <button class="btn btn-success">Save Attendance</button>
+</form>
+
+<hr>
+
+<h3>Previous Attendance</h3>
+
+<table class="table table-striped">
+    <tr>
+        <th>Date</th><th>Student</th><th>Status</th>
+    </tr>
+
+    {% for a in past_attendance %}
+    <tr>
+        <td>{{ a.date }}</td>
+        <td>{{ a.student.name }}</td>
+        <td>{{ a.get_status_display }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+
+<h2>Edit Subject</h2>
+
+<form method="POST" class="form-box">
+    {% csrf_token %}
+
+    <label>Subject Name</label>
+    <input type="text" name="name"
+        value="{{ subject.subject_name }}" class="form-control">
+
+    <label>Select Course</label>
+    <select name="course" class="form-control">
+        {% for c in courses %}
+        <option value="{{ c.id }}" {% if subject.course.id == c.id %}selected{% endif %}>
+            {{ c.course_name }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Select Teacher</label>
+    <select name="teacher" class="form-control">
+        <option value="">-- None --</option>
+        {% for t in teachers %}
+        <option value="{{ t.id }}" {% if subject.teacher and t.id == subject.teacher.id %}selected{% endif %}>
+            {{ t.name }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <button class="btn btn-primary mt-3">Update</button>
+</form>
+
+{% endblock %}
