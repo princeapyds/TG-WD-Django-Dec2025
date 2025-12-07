@@ -1,0 +1,29 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+
+<h2>Monthly Summary</h2>
+
+<form method="GET" class="form-inline">
+    <input type="number" name="month" placeholder="Month (1-12)" class="form-control" required>
+    <input type="number" name="year" placeholder="Year" class="form-control" required>
+
+    <button class="btn btn-primary ms-2">View</button>
+</form>
+
+<table class="table mt-4 table-bordered">
+    <tr>
+        <th>Student</th>
+        <th>Present</th>
+        <th>Absent</th>
+    </tr>
+
+    {% for s in summary %}
+    <tr>
+        <td>{{ s.student }}</td>
+        <td>{{ s.present }}</td>
+        <td>{{ s.absent }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

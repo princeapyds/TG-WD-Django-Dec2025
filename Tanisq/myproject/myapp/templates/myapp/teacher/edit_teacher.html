@@ -1,0 +1,24 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+
+<h2>Edit Teacher</h2>
+
+<form method="POST" class="form-box">
+    {% csrf_token %}
+
+    <label>Name</label>
+    <input type="text" name="name"
+        class="form-control" value="{{ teacher.name }}">
+
+    <label>Email</label>
+    <input type="email" name="email"
+        class="form-control" value="{{ teacher.email }}">
+
+    <label>Qualification</label>
+    <input type="text" name="qualification"
+        class="form-control" value="{{ teacher.qualification }}">
+
+    <button class="btn btn-primary mt-3">Update</button>
+</form>
+
+{% endblock %}
