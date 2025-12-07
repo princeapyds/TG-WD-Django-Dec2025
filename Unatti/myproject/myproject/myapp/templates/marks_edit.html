@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Marks</title>
+    <style>
+        body { background: #eef3ff; font-family: Arial, sans-serif; }
+        .container { width: 400px; margin: 50px auto; background: #fff; padding: 25px; border-radius: 8px; }
+        input, select { width: 100%; padding: 8px; margin: 8px 0; border-radius: 4px; border: 1px solid #ccc; }
+        input[type=submit] { background: orange; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Marks</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Student ID</label>
+            <input type="number" name="student_id" value="{{ mark.student_id }}" required>
+
+            <label>Subject</label>
+            <select name="subject" required>
+                {% for subject in subjects %}
+                    <option value="{{ subject.id }}" {% if mark.subject.id == subject.id %}selected{% endif %}>{{ subject.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Marks</label>
+            <input type="number" name="marks" value="{{ mark.marks }}" required>
+
+            <label>Exam Type</label>
+            <select name="exam_type" required>
+                <option value="Midterm" {% if mark.exam_type =="Midterm" %}selected{% endif %}>Midterm</option>
+                <option value="Final" {% if mark.exam_type =="Final" %}selected{% endif %}>Final</option>
+                <option value="Quiz" {% if mark.exam_type =="Quiz" %}selected{% endif %}>Quiz</option>
+            </select>
+
+            <input type="submit" value="Update Marks">
+        </form>
+    </div>
+</body>
+</html>

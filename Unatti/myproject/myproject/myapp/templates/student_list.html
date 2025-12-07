@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students List</title>
+<style>
+  body { background: #eef3ff; font-family: Arial; }
+.container { width: 600px; margin: 40px auto; background: white; padding: 20px; border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: center; }
+.btn { padding: 6px 12px; text-decoration: none; border-radius: 4px; }
+.add { background: green; color: white; }
+.edit { background: blue; color: white; }
+.delete { background: red; color: white; }
+input { width: 95%; padding: 8px; margin-bottom: 10px; }
+button { padding: 8px 16px; background: purple; color: white; border-radius: 5px; border: none; cursor: pointer; }
+
+
+</style></head>
+<body>
+<div class="container">
+    <h2>Students List</h2>
+    <a class="btn add" href="{% url 'student_add' %}">+ Add Student</a>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Course</th>
+            <th>Age</th>
+            <th>Actions</th>
+        </tr>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.email }}</td>
+            <td>{{ s.course }}</td>
+            <td>{{ s.age }}</td>
+            <td>
+                <a class="btn edit" href="{% url 'student_edit' s.id %}">Edit</a>
+                <a class="btn delete" href="{% url 'student_delete' s.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

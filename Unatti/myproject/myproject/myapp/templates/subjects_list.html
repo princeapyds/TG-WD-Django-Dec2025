@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subject List</title>
+    <style>
+        body {
+            background: #eef3ff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        a.button {
+            background: green;
+            color: white;
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        a.delete {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Subjects List</h2>
+    <a class="button" href="{% url 'subject_add' %}">Add Subject</a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Actions</th>
+        </tr>
+        {% for subject in subjects %}
+        <tr>
+            <td>{{ subject.id }}</td>
+            <td>{{ subject.name }}</td>
+            <td>{{ subject.course.course_name }}</td>
+            <td>
+                <a class="button" href="{% url 'subject_edit' subject.id %}">Edit</a>
+                <a class="button delete" href="{% url 'subject_delete' subject.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

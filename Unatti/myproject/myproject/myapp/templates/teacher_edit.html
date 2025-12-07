@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Teacher</title>
+    <style>
+        body { background: #eef3ff; font-family: Arial, sans-serif; }
+        .container { width: 400px; margin: 40px auto; background: #fff; padding: 25px; border-radius: 8px; }
+        input, select { width: 100%; padding: 8px; margin: 10px 0; }
+        button { padding: 8px 12px; background: orange; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Edit Teacher</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" value="{{ teacher.name }}" required>
+        <input type="email" name="emailid" value="{{ teacher.emailid }}" required>
+        <input type="text" name="qualification" value="{{ teacher.qualification }}" required>
+        <select name="course_id" required>
+            {% for course in courses %}
+                <option value="{{ course.id }}" {% if course.id == teacher.course.id %}selected{% endif %}>
+                    {{ course.course_name }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Update</button>
+    </form>
+</div>
+</body>
+</html>

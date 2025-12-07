@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Teacher</title>
+    <style>
+        body { background: #eef3ff; font-family: Arial, sans-serif; }
+        .container { width: 400px; margin: 40px auto; background: #fff; padding: 25px; border-radius: 8px; }
+        input, select { width: 100%; padding: 8px; margin: 10px 0; }
+        button { padding: 8px 12px; background: green; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Add Teacher</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Teacher Name" required>
+        <input type="email" name="emailid" placeholder="Email" required>
+        <input type="text" name="qualification" placeholder="Qualification" required>
+        <select name="course_id" required>
+            <option value="">Select Course</option>
+            {% for course in courses %}
+                <option value="{{ course.id }}">{{ course.course_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Add</button>
+    </form>
+</div>
+</body>
+</html>

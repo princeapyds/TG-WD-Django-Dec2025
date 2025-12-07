@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Attendance</title>
+<style>
+  body { background: #eef3ff; font-family: Arial; }
+.container { width: 600px; margin: 40px auto; background: white; padding: 20px; border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: center; }
+.btn { padding: 6px 12px; text-decoration: none; border-radius: 4px; }
+.add { background: green; color: white; }
+.edit { background: blue; color: white; }
+.delete { background: red; color: white; }
+input { width: 95%; padding: 8px; margin-bottom: 10px; }
+button { padding: 8px 16px; background: purple; color: white; border-radius: 5px; border: none; cursor: pointer; }
+
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Add Attendance</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <select name="student" required>
+            <option value="">Select Student</option>
+            {% for s in students %}
+            <option value="{{ s.id }}">{{ s.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="date" name="date" required>
+
+        <select name="status" required>
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+            <option value="Leave">Leave</option>
+        </select>
+
+        <button type="submit">Save</button>
+    </form>
+</div>
+</body>
+</html>

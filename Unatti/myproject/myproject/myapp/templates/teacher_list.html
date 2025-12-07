@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher List</title>
+    <style>
+        body { background: #eef3ff; font-family: Arial, sans-serif; }
+        .container { width: 700px; margin: 40px auto; background: #fff; padding: 25px; border-radius: 8px; text-align: center; }
+        table { width: 100%; margin-top: 15px; border-collapse: collapse; }
+        th, td { padding: 8px; border-bottom: 1px solid #ddd; }
+        a.button { background: green; color: white; padding: 6px 12px; text-decoration: none; border-radius: 4px; margin-right: 5px; }
+        a.delete { background: red; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Teachers List</h2>
+    <a class="button" href="{% url 'teacher_add' %}">Add Teacher</a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Qualification</th>
+            <th>Course</th>
+            <th>Actions</th>
+        </tr>
+        {% for teacher in teachers %}
+        <tr>
+            <td>{{ teacher.id }}</td>
+            <td>{{ teacher.name }}</td>
+            <td>{{ teacher.emailid }}</td>
+            <td>{{ teacher.qualification }}</td>
+            <td>{{ teacher.course.course_name }}</td>
+            <td>
+                <a class="button" href="{% url 'teacher_edit' teacher.id %}">Edit</a>
+                <a class="button delete" href="{% url 'teacher_delete' teacher.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Course</title>
+<style>
+  body { background: #eef3ff; font-family: Arial; }
+.container { width: 600px; margin: 40px auto; background: white; padding: 20px; border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: center; }
+.btn { padding: 6px 12px; text-decoration: none; border-radius: 4px; }
+.add { background: green; color: white; }
+.edit { background: blue; color: white; }
+.delete { background: red; color: white; }
+input { width: 95%; padding: 8px; margin-bottom: 10px; }
+button { padding: 8px 16px; background: purple; color: white; border-radius: 5px; border: none; cursor: pointer; }
+
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Edit Course</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="course_name" value="{{ course.course_name }}" required>
+        <textarea name="course_description" required>{{ course.course_description }}</textarea>
+        <button type="submit">Update</button>
+    </form>
+</div>
+</body>
+</html>
